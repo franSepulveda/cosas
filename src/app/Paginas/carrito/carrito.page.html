@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Carrito</ion-title>
+    <ion-button [routerLink]="['/principal']" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let x of carrito" color="dark">
+    <ion-card-header>
+      
+      
+
+      <ion-card-subtitle>Producto id: {{x.idProducto}}</ion-card-subtitle>
+      <ion-card-title>Producto: {{x.nombreProducto }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Total:{{x.total}}
+
+      Cantidad:{{x.cantidad}}
+      
+    </ion-card-content>
+    <hr size="2px" color="white" />
+    <div style="display: flex; justify-content:space-between ;">
+      <ion-button [routerLink]="['carrito']" fill="clear" (click)=" agregar(x.nombreProducto,x.idProducto,x.total,x.cantidad,x.idUsuario,x.id)">Agregar</ion-button>
+      <ion-button  [routerLink]="['carrito']" fill="clear" (click)=" quitar(x.nombreProducto,x.idProducto,x.total,x.cantidad,x.idUsuario,x.id)">Quitar</ion-button>
+    </div>
+
+  </ion-card>
+
+ 
+  <h2 style="justify-content: center;">Total a pagar: {{Total}}</h2>
+  <ion-button  (click)="eliminarCarrito()">Eliminar Carrito</ion-button>
+
+</ion-content>

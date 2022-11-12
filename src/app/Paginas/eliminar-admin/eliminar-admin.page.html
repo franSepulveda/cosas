@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center" >Eliminar Producto </ion-title>
+    <ion-button [routerLink]="['/listarAdmin']" slot="start"><ion-icon name="arrow-back-outline"></ion-icon> </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-card *ngIf="productoActivo">
+    <ion-img [src]="productoActivo.imagen"></ion-img>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        {{ productoActivo.nombre }}
+      </ion-card-title>
+      <ion-card-subtitle>
+        
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-content>Precio : {{productoActivo.precio | currency:' CLP '}}</ion-card-content>
+      <ion-card-content>Stock actual : {{productoActivo.stock}}</ion-card-content>
+
+      <div></div>
+      
+      <ion-card-content>Descripcion: {{ productoActivo.descripcion }}</ion-card-content>
+      <ion-card-content>Categoria: {{ productoActivo.categoria}}</ion-card-content>
+      <ion-card-content>Unidades o Pack:{{ productoActivo.unidades_pack }}</ion-card-content>
+      <ion-card-content>Peso: {{ productoActivo.peso }}</ion-card-content>
+      <ion-card-content>Marca: {{ productoActivo.marca}}</ion-card-content>
+      <ion-card-content>Tipo Envase:{{ productoActivo.tipo_envase }}</ion-card-content>
+    </ion-card-content>
+    
+    <ion-row>
+        <ion-col width-50 style="text-align: center">
+          <ion-button color="danger" (click)="eliminarProducto()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+       </ion-col>   
+    </ion-row>
+      
+    
+  </ion-card> 
+
+  
+  
+</ion-content>

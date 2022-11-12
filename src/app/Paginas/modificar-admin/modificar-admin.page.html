@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center" >Modificar Producto </ion-title>
+    <ion-button [routerLink]="['/listarAdmin']" slot="start"><ion-icon name="arrow-back-outline"></ion-icon> </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formulario" novalidate (ngSubmit)="modificarProducto()"  >
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <ion-input [disabled]="imagenCargando" (change)="cargarFoto($event)" type="file" formControlName="imagen"></ion-input>
+      <ion-note
+      slot="error"
+        *ngIf="campo('imagen').invalid  && campo('imagen').errors && campo('imagen').errors.required && fueTocado('imagen') "
+      >
+        Este campo es requerido
+      </ion-note>
+    </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" formControlName="nombre"></ion-input>
+    <ion-note slot="error"
+      *ngIf="campo('nombre').invalid  && campo('nombre').errors && campo('nombre').errors.required && fueTocado('nombre') ">
+      Este campo es requerido
+    </ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('nombre').invalid  && campo('nombre').errors && campo('nombre').errors.maxlength && fueTocado('nombre') ">
+      Los caracteres maximos son 20
+    </ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('nombre').invalid  && campo('nombre').errors && campo('nombre').errors.minlength && fueTocado('nombre') ">
+      Los caracteres maximos son 3
+    </ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-label>Precio</ion-label>
+    <ion-input type="number" formControlName="precio"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">stock</ion-label>
+    <ion-input type="number" formControlName="stock"></ion-input>
+    <ion-note slot="error"
+      *ngIf="campo('stock').invalid && campo('stock').errors && campo('stock').errors.required && fueTocado('stock')">
+      Este campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('stock').invalid && campo('stock').errors && campo('stock').errors.min && fueTocado('stock')">El
+      valor minimo es 1</ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descripcion</ion-label>
+    <ion-textarea formControlName="descripcion"></ion-textarea>
+    <ion-note slot="error"
+      *ngIf="campo('descripcion').invalid && campo('descripcion').errors && campo('descripcion').errors.required && fueTocado('descripcion')">
+      Este campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('descripcion').invalid && campo('descripcion').errors && campo('descripcion').errors.minlength && fueTocado('descripcion')">
+      Largo minimo 10</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Categoria</ion-label>
+    <ion-textarea formControlName="categoria"></ion-textarea>
+    <ion-note slot="error"
+      *ngIf="campo('categoria').invalid && campo('categoria').errors && campo('categoria').errors.required && fueTocado('categoria')">
+      Este campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('categoria').invalid && campo('categoria').errors && campo('categoria').errors.minlength && fueTocado('categoria')">
+      Largo minimo 2</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Unidades por pack</ion-label>
+    <ion-textarea formControlName="unidades_pack"></ion-textarea>
+    <ion-note slot="error"
+      *ngIf="campo('unidades_pack').invalid && campo('unidades_pack').errors && campo('unidades_pack').errors.required && fueTocado('unidades_pack')">
+      Este campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('unidades_pack').invalid && campo('unidades_pack').errors && campo('unidades_pack').errors.minlength && fueTocado('unidades_pack')">
+      Largo minimo 1</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Peso</ion-label>
+    <ion-textarea formControlName="peso"></ion-textarea>
+    <ion-note slot="error"
+      *ngIf="campo('peso').invalid && campo('peso').errors && campo('peso').errors.required && fueTocado('peso')">Este
+      campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('peso').invalid && campo('peso').errors && campo('peso').errors.minlength && fueTocado('peso')">
+      Largo minimo 2</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Marca</ion-label>
+    <ion-textarea formControlName="marca"></ion-textarea>
+    <ion-note slot="error"
+      *ngIf="campo('marca').invalid && campo('marca').errors && campo('marca').errors.required && fueTocado('marca')">
+      Este campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('marca').invalid && campo('marca').errors && campo('marca').errors.minlength && fueTocado('marca')">
+      Largo minimo 2</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Tipo de Envase</ion-label>
+    <ion-textarea formControlName="tipo_envase"></ion-textarea>
+    <ion-note slot="error"
+      *ngIf="campo('tipo_envase').invalid && campo('tipo_envase').errors && campo('tipo_envase').errors.required && fueTocado('tipo_envase')">
+      Este campo es requerido</ion-note>
+    <ion-note slot="error"
+      *ngIf="campo('tipo_envase').invalid && campo('tipo_envase').errors && campo('tipo_envase').errors.minlength && fueTocado('tipo_envase')">
+      Largo minimo 3</ion-note>
+  </ion-item>
+    <ion-row>
+      <ion-col width-50 style="text-align: center">
+        <ion-button
+        [disabled]="formulario.invalid || imagenCargando"
+      role="submit" type="submit">
+        Guardar
+      </ion-button>
+      </ion-col>   
+    </ion-row>
+  </form>
+</ion-content>
